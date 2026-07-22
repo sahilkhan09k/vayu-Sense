@@ -47,7 +47,7 @@ interface ServiceStatus {
 const CITIES = ['Mumbai', 'Delhi', 'Bengaluru'];
 
 export function SettingsPage() {
-  const [settings, setSettings] = useState<SettingsData | null>(null);
+  const [, setSettings] = useState<SettingsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [savedOk, setSavedOk] = useState(false);

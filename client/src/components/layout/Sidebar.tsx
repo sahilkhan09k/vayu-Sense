@@ -7,7 +7,6 @@ import {
   Settings,
   ChevronLeft,
   ChevronRight,
-  BarChart3,
   Target,
   ShieldAlert,
   Building2,
