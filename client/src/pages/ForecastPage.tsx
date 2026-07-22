@@ -4,6 +4,7 @@ import { AppLayout } from '../components/layout/AppLayout';
 import { AreaChart, Area, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { AlertTriangle } from 'lucide-react';
 import { getAQICategory, getAQICSSVar, getAQILabel } from '../types';
+import { apiFetch } from '../utils/apiFetch';
 import './ForecastPage.css';
 
 interface ForecastPoint {
@@ -46,7 +47,7 @@ export function ForecastPage() {
       setWardsLoading(true);
       setError(null);
       try {
-        const res = await fetch(`/api/aqi/wards?city=${encodeURIComponent(selectedCity)}`);
+        const res = await apiFetch(`/api/aqi/wards?city=${encodeURIComponent(selectedCity)}`);
         if (!res.ok) throw new Error('Failed to load wards');
         const data = await res.json();
         setWards(data.wards || []);
@@ -74,7 +75,7 @@ export function ForecastPage() {
       setForecastLoading(true);
       setError(null);
       try {
-        const res = await fetch(`/api/aqi/forecast/${selectedWardId}`);
+        const res = await apiFetch(`/api/aqi/forecast/${selectedWardId}`);
         if (!res.ok) throw new Error('Failed to fetch forecast details');
         const data = await res.json();
         setForecastData(data);

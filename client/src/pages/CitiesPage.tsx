@@ -3,6 +3,7 @@ import { AppLayout } from '../components/layout/AppLayout';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
 import { getAQICategory } from '../types';
+import { apiFetch } from '../utils/apiFetch';
 import './CitiesPage.css';
 
 interface CityData {
@@ -26,7 +27,7 @@ export function CitiesPage() {
     try {
       const cities = ['Mumbai', 'Delhi', 'Bengaluru'];
       const promises = cities.map(async (city) => {
-        const res = await fetch(`/api/aqi/live?city=${city}`);
+        const res = await apiFetch(`/api/aqi/live?city=${city}`);
         if (!res.ok) throw new Error(`Failed to fetch ${city}`);
         const json = await res.json();
         return {

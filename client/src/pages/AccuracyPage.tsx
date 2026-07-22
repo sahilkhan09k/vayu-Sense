@@ -3,6 +3,7 @@ import { useCity } from '../context/CityContext';
 import { AppLayout } from '../components/layout/AppLayout';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { AlertTriangle, TrendingDown, Percent, Award } from 'lucide-react';
+import { apiFetch } from '../utils/apiFetch';
 import './AccuracyPage.css';
 
 interface AccuracyMetrics {
@@ -37,7 +38,7 @@ export function AccuracyPage() {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch(`/api/aqi/accuracy?city=${encodeURIComponent(selectedCity)}`);
+        const res = await apiFetch(`/api/aqi/accuracy?city=${encodeURIComponent(selectedCity)}`);
         if (!res.ok) throw new Error('Failed to load forecast accuracy data');
         const result = await res.json();
         

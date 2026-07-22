@@ -11,6 +11,7 @@ import {
 import { X, RefreshCw, AlertTriangle, Loader2, Brain } from 'lucide-react';
 import { AQIBadge } from '../common/AQIBadge';
 import type { WardAQI } from '../../hooks/useAQIData';
+import { apiFetch } from '../../utils/apiFetch';
 import './WardDetailPanel.css';
 
 interface PollutionSource {
@@ -82,9 +83,8 @@ export function WardDetailPanel({ wardId, wardName, wardData, onClose }: WardDet
     setAttrLoading(true);
     setAttrError(null);
     try {
-      const res = await fetch(`/api/aqi/attribution/${wardId}`, {
+      const res = await apiFetch(`/api/aqi/attribution/${wardId}`, {
         method: 'POST',
-        credentials: 'include',
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const json: WardAttributionResponse = await res.json();

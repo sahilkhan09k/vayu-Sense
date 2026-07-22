@@ -8,6 +8,7 @@ import { useAuth } from '../context/AuthContext';
 import { CitizenLayout } from '../components/citizen/CitizenLayout';
 import { getAQICategory, getAQICSSVar, getAQILabel } from '../types';
 import { Navigation2, Clock, Loader2, Wind } from 'lucide-react';
+import { apiFetch } from '../utils/apiFetch';
 import './CitizenCommute.css';
 
 interface WardOption {
@@ -89,7 +90,7 @@ export function CitizenCommute() {
         toWardId,
         departureTime,
       });
-      const res = await fetch(`/api/citizen/commute?${params}`);
+      const res = await apiFetch(`/api/citizen/commute?${params}`);
       if (!res.ok) throw new Error('API error');
       const data = await res.json();
       setResult(data);

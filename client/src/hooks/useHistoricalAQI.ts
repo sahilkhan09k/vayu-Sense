@@ -4,6 +4,7 @@
  */
 
 import { useState, useEffect, useCallback } from 'react';
+import { apiFetch } from '../utils/apiFetch';
 
 export interface AQISeriesPoint {
   timestamp: string;
@@ -47,7 +48,7 @@ export function useHistoricalAQI(
     try {
       const params = new URLSearchParams({ city, hours: String(hours) });
       if (wardId) params.set('wardId', wardId);
-      const res = await fetch(`/api/aqi/history?${params.toString()}`);
+      const res = await apiFetch(`/api/aqi/history?${params.toString()}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const json: HistoricalAQIData = await res.json();
       setData(json);

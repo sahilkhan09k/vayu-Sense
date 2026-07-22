@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, CircleMarker, Popup, Polyline } from 'react-le
 import { useCity } from '../context/CityContext';
 import { AppLayout } from '../components/layout/AppLayout';
 import { AlertTriangle, Plus, FileText, Navigation } from 'lucide-react';
+import { apiFetch } from '../utils/apiFetch';
 import 'leaflet/dist/leaflet.css';
 import './EnforcementPage.css';
 
@@ -106,7 +107,7 @@ export function EnforcementPage() {
     setError(null);
     try {
       // 1. Fetch ranked queue
-      const queueRes = await fetch(`/api/enforcement/queue?city=${encodeURIComponent(selectedCity)}`);
+      const queueRes = await apiFetch(`/api/enforcement/queue?city=${encodeURIComponent(selectedCity)}`);
       if (!queueRes.ok) throw new Error('Failed to load enforcement queue');
       const queueData = await queueRes.json();
       setQueue(queueData.queue || []);
@@ -115,7 +116,7 @@ export function EnforcementPage() {
       }
 
       // 2. Fetch logged actions
-      const actionsRes = await fetch(`/api/enforcement/actions?city=${encodeURIComponent(selectedCity)}`);
+      const actionsRes = await apiFetch(`/api/enforcement/actions?city=${encodeURIComponent(selectedCity)}`);
       if (!actionsRes.ok) throw new Error('Failed to load violation logs');
       const actionsData = await actionsRes.json();
       setActions(actionsData.actions || []);
@@ -148,9 +149,8 @@ export function EnforcementPage() {
 
     setSubmitting(true);
     try {
-      const res = await fetch('/api/enforcement/action', {
+      const res = await apiFetch('/api/enforcement/action', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           wardId: targetWardId,
           violationType,

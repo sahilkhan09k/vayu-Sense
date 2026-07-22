@@ -4,6 +4,7 @@
  */
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { apiFetch } from '../utils/apiFetch';
 
 export interface WardAQI {
   wardId: string;
@@ -51,7 +52,7 @@ export function useAQIData(city: string = 'Mumbai'): UseAQIDataReturn {
 
   const fetchData = useCallback(async () => {
     try {
-      const res = await fetch(`/api/aqi/live?city=${encodeURIComponent(city)}`);
+      const res = await apiFetch(`/api/aqi/live?city=${encodeURIComponent(city)}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const json: LiveAQIData = await res.json();
       setData(json);

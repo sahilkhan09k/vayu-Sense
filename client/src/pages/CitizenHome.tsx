@@ -8,6 +8,7 @@ import { useAuth } from '../context/AuthContext';
 import { CitizenLayout } from '../components/citizen/CitizenLayout';
 import { getAQICategory, getAQICSSVar, getAQILabel } from '../types';
 import { RefreshCw, AlertTriangle, Wind, Droplets, LogOut } from 'lucide-react';
+import { apiFetch } from '../utils/apiFetch';
 import './CitizenHome.css';
 
 interface WardSnapshot {
@@ -80,8 +81,8 @@ export function CitizenHome() {
     try {
       // Fetch ward AQI data and advisory in parallel
       const [wardsRes, advisoryRes] = await Promise.all([
-        fetch(`/api/citizen/wards?city=${encodeURIComponent(city)}`),
-        fetch(
+        apiFetch(`/api/citizen/wards?city=${encodeURIComponent(city)}`),
+        apiFetch(
           `/api/citizen/advisory?city=${encodeURIComponent(city)}&ageGroup=${encodeURIComponent(profile.ageGroup || 'Adult')}&sensitivity=${encodeURIComponent(profile.sensitivity || 'Normal')}`
         ),
       ]);

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Copy, Check, UserPlus, Building2 } from 'lucide-react';
+import { apiFetch } from '../../utils/apiFetch';
 import './CityAuthoritiesPanel.css';
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL 
@@ -41,9 +42,7 @@ export function CityAuthoritiesPanel() {
   const fetchAuthorities = useCallback(async () => {
     setLoadingList(true);
     try {
-      const res = await fetch(`${API_BASE}/auth/city-authorities`, {
-        credentials: 'include',
-      });
+      const res = await apiFetch(`${API_BASE}/auth/city-authorities`);
       if (!res.ok) throw new Error('Failed to load city authorities');
       const data = await res.json();
       setAuthorities(data.authorities);
@@ -64,10 +63,8 @@ export function CityAuthoritiesPanel() {
     setSubmitting(true);
 
     try {
-      const res = await fetch(`${API_BASE}/auth/create-city-authority`, {
+      const res = await apiFetch(`${API_BASE}/auth/create-city-authority`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
         body: JSON.stringify({ name, email, city }),
       });
 

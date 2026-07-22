@@ -1,8 +1,3 @@
-/**
- * SettingsPage.tsx — Page 17
- * Admin Settings & Data Source Configuration.
- * State authority only. Shows system health, calibration scales, and platform config.
- */
 import { useState, useEffect } from 'react';
 import { AppLayout } from '../components/layout/AppLayout';
 import {
@@ -19,6 +14,7 @@ import {
   BarChart3,
   Shield,
 } from 'lucide-react';
+import { apiFetch } from '../utils/apiFetch';
 import './SettingsPage.css';
 
 interface CalibrationCity {
@@ -92,7 +88,7 @@ export function SettingsPage() {
 
   const fetchSettings = async () => {
     try {
-      const res = await fetch('/api/settings');
+      const res = await apiFetch('/api/settings');
       if (res.ok) {
         const data: SettingsData = await res.json();
         setSettings(data);
@@ -110,7 +106,7 @@ export function SettingsPage() {
     // Check API health endpoint (MongoDB + Express)
     const start = Date.now();
     try {
-      const res = await fetch('/api/settings');
+      const res = await apiFetch('/api/settings');
       const latency = Date.now() - start;
       setServices((prev) =>
         prev.map((s) =>
@@ -130,7 +126,7 @@ export function SettingsPage() {
     // Groq: test via a lightweight API call — we just check our server can reach it
     try {
       const groqStart = Date.now();
-      const res = await fetch('/api/citizen/advisory?city=Mumbai&ageGroup=Adult&sensitivity=Normal');
+      const res = await apiFetch('/api/citizen/advisory?city=Mumbai&ageGroup=Adult&sensitivity=Normal');
       const groqLatency = Date.now() - groqStart;
       setServices((prev) =>
         prev.map((s) =>
@@ -150,7 +146,7 @@ export function SettingsPage() {
     // OpenWeatherMap: check via forecast endpoint (it uses OWM internally)
     try {
       const owmStart = Date.now();
-      const res = await fetch('/api/forecast/live?wardId=MUM_W001&city=Mumbai');
+      const res = await apiFetch('/api/forecast/live?wardId=MUM_W001&city=Mumbai');
       const owmLatency = Date.now() - owmStart;
       setServices((prev) =>
         prev.map((s) =>
@@ -170,7 +166,7 @@ export function SettingsPage() {
     // CPCB: check live AQI endpoint
     try {
       const cpcbStart = Date.now();
-      const res = await fetch('/api/aqi/live?city=Mumbai');
+      const res = await apiFetch('/api/aqi/live?city=Mumbai');
       const cpcbLatency = Date.now() - cpcbStart;
       setServices((prev) =>
         prev.map((s) =>
@@ -206,9 +202,8 @@ export function SettingsPage() {
     setSavedOk(false);
     setError(null);
     try {
-      const res = await fetch('/api/settings', {
+      const res = await apiFetch('/api/settings', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ calibrationScales: calibration, useMockDb }),
       });
       if (res.ok) {

@@ -7,6 +7,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { CitizenLayout } from '../components/citizen/CitizenLayout';
 import { Flag, Loader2, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { apiFetch } from '../utils/apiFetch';
 import './CitizenReport.css';
 
 const CATEGORIES = [
@@ -75,7 +76,7 @@ export function CitizenReport() {
 
   const fetchRecentReports = useCallback(async () => {
     try {
-      const res = await fetch(`/api/citizen/reports?city=${encodeURIComponent(city)}`);
+      const res = await apiFetch(`/api/citizen/reports?city=${encodeURIComponent(city)}`);
       if (res.ok) {
         const d = await res.json();
         setRecentReports(d.reports || []);
@@ -94,9 +95,8 @@ export function CitizenReport() {
   const handleSubmit = async () => {
     setSubmitting(true);
     try {
-      const res = await fetch('/api/citizen/report', {
+      const res = await apiFetch('/api/citizen/report', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...form, city, reportedBy: user?.id || null }),
       });
       if (res.ok) {
