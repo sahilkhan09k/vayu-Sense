@@ -2,7 +2,9 @@ import { useState, useEffect, useCallback } from 'react';
 import { Copy, Check, UserPlus, Building2 } from 'lucide-react';
 import './CityAuthoritiesPanel.css';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = import.meta.env.VITE_API_BASE_URL 
+  ? `${import.meta.env.VITE_API_BASE_URL}/api`
+  : '/api';
 
 const CITY_OPTIONS = ['Mumbai', 'Delhi', 'Bengaluru'] as const;
 
