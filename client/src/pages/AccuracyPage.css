@@ -1,0 +1,131 @@
+.accuracy-page {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.accuracy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.accuracy-title-section h1 {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.accuracy-title-section p {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.accuracy-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.accuracy-metric-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.accuracy-metric-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.accuracy-metric-val {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.accuracy-metric-compare {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.accuracy-metric-compare.better {
+  color: var(--aqi-good);
+}
+
+.accuracy-metric-compare.worse {
+  color: var(--aqi-severe);
+}
+
+.accuracy-chart-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.accuracy-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accuracy-chart-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.accuracy-chart-legend {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+}
+
+.legend-color.real {
+  background-color: var(--text-primary);
+}
+
+.legend-color.predicted {
+  background-color: var(--accent-teal);
+}
+
+.legend-color.baseline {
+  background-color: #64748b;
+  border: 1px dashed rgba(255, 255, 255, 0.4);
+}
+
+.accuracy-chart-container {
+  height: 380px;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .accuracy-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .accuracy-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}

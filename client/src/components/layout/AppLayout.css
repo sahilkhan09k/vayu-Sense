@@ -1,0 +1,57 @@
+/* ============================================
+   App Layout — Premium Shell
+   ============================================ */
+
+.app-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-layout__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  transition: margin-left var(--transition-smooth);
+  min-width: 0;
+}
+
+.app-layout__content {
+  position: relative;
+  flex: 1;
+  margin-top: var(--topbar-height);
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - var(--topbar-height));
+  /* Subtle radial glow in center */
+  background: radial-gradient(
+    ellipse at 50% 30%,
+    rgba(0, 212, 180, 0.03) 0%,
+    transparent 60%
+  );
+}
+
+.app-layout__content-inner {
+  position: relative;
+  z-index: 1;
+  padding: 32px;
+  /* Let content grow naturally — no fixed height */
+}
+
+.app-layout__content--full-bleed {
+  overflow: hidden;
+}
+
+.app-layout__content-inner--full-bleed {
+  padding: 0;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Ensure topbar stretches correctly */
+.app-layout__main .topbar {
+  left: inherit;
+}

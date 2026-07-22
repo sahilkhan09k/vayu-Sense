@@ -1,0 +1,105 @@
+.base-map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.base-map {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-primary);
+  z-index: 0;
+}
+
+/* Dark-themed Leaflet zoom controls */
+.base-map-wrapper .leaflet-control-zoom {
+  border: 1px solid var(--border-default) !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.base-map-wrapper .leaflet-control-zoom a {
+  background: var(--bg-elevated) !important;
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  width: 32px !important;
+  height: 32px !important;
+  line-height: 32px !important;
+  font-size: 16px !important;
+}
+
+.base-map-wrapper .leaflet-control-zoom a:hover {
+  background: var(--bg-card) !important;
+  color: var(--accent-teal) !important;
+}
+
+.base-map-wrapper .leaflet-control-zoom a:last-child {
+  border-bottom: none !important;
+}
+
+/* Popup styling */
+.base-map-wrapper .leaflet-popup-content-wrapper {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+}
+
+.base-map-wrapper .leaflet-popup-tip {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.base-map-wrapper .leaflet-popup-content {
+  margin: 10px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.base-map-wrapper .map-popup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.base-map-wrapper .map-popup strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.base-map-wrapper .map-popup span {
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+/* Tooltip styling for station markers */
+.base-map-wrapper .leaflet-tooltip {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.base-map-wrapper .leaflet-tooltip-top::before {
+  border-top-color: var(--border-default);
+}
+
+/* Attribution — subtle */
+.base-map-wrapper .leaflet-control-attribution {
+  background: rgba(10, 14, 26, 0.75) !important;
+  color: var(--text-muted) !important;
+  font-size: 10px !important;
+  backdrop-filter: blur(4px);
+}
+
+.base-map-wrapper .leaflet-control-attribution a {
+  color: var(--text-secondary) !important;
+}

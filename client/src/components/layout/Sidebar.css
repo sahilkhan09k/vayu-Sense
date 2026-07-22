@@ -1,0 +1,244 @@
+/* ============================================
+   Sidebar — Premium Command Center
+   ============================================ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background: var(--gradient-surface);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  transition: width var(--transition-smooth);
+  overflow: hidden;
+}
+
+/* Subtle right-edge glow line */
+.sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 212, 180, 0.15) 30%,
+    rgba(0, 212, 180, 0.08) 70%,
+    transparent 100%
+  );
+}
+
+.sidebar--expanded {
+  width: var(--sidebar-expanded);
+}
+
+.sidebar--collapsed {
+  width: var(--sidebar-collapsed);
+}
+
+/* ---- Logo ---- */
+.sidebar__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  height: var(--topbar-height);
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.sidebar__logo-icon-wrapper {
+  flex-shrink: 0;
+}
+
+.sidebar__logo-icon {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--accent-teal);
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-teal-dim);
+  border: 1px solid rgba(0, 212, 180, 0.2);
+  border-radius: 8px;
+  animation: glow-breathe 4s ease-in-out infinite;
+}
+
+.sidebar__logo-text {
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+  animation: fade-in 0.3s ease;
+}
+
+.sidebar__logo-text-accent {
+  color: var(--accent-teal);
+}
+
+/* ---- Navigation ---- */
+.sidebar__nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+  gap: 2px;
+  overflow-y: auto;
+}
+
+.sidebar__nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 20px;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  white-space: nowrap;
+  border-left: 3px solid transparent;
+  overflow: hidden;
+}
+
+.sidebar__nav-item:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.sidebar__nav-item:hover .sidebar__nav-icon {
+  transform: scale(1.08);
+}
+
+/* Active state — glow + teal */
+.sidebar__nav-item--active {
+  border-left-color: var(--accent-teal);
+  color: var(--text-primary);
+}
+
+.sidebar__nav-item--active .sidebar__nav-icon {
+  color: var(--accent-teal);
+  filter: drop-shadow(0 0 6px rgba(0, 212, 180, 0.5));
+}
+
+.sidebar__nav-item--disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.sidebar__nav-item--disabled:hover {
+  color: var(--text-secondary);
+  background: transparent;
+}
+
+/* Background glow element behind active item */
+.sidebar__nav-glow {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-teal-fade);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.sidebar__nav-icon {
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.sidebar__nav-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: slide-in-right 0.2s ease;
+}
+
+/* ---- Toggle ---- */
+.sidebar__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 8px 12px;
+  border-radius: 6px;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+  border: 1px solid var(--border-subtle);
+}
+
+.sidebar__toggle:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  border-color: var(--border-default);
+}
+
+/* ---- Tooltip for collapsed mode ---- */
+.sidebar--collapsed .sidebar__nav-item {
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.sidebar--collapsed .sidebar__nav-item[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-default);
+  z-index: 200;
+  animation: slide-in-right 0.15s ease;
+}
+
+/* ---- Role Strip ---- */
+
+.sidebar__role-strip {
+  padding: 5px 16px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar__role-strip--state {
+  background: rgba(139, 92, 246, 0.08);
+  color: #a78bfa;
+  border-top: 1px solid rgba(139, 92, 246, 0.15);
+  border-bottom-color: rgba(139, 92, 246, 0.1);
+}
+
+.sidebar__role-strip--city {
+  background: rgba(0, 212, 180, 0.06);
+  color: var(--accent-teal);
+  border-top: 1px solid rgba(0, 212, 180, 0.12);
+  border-bottom-color: rgba(0, 212, 180, 0.08);
+}
+
+/* ---- State authority logo variant ---- */
+
+.sidebar__logo-icon-wrapper--state .sidebar__logo-icon {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: rgba(139, 92, 246, 0.3);
+  color: #a78bfa;
+  text-shadow: 0 0 12px rgba(139, 92, 246, 0.5);
+}

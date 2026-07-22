@@ -1,0 +1,50 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Andheri East", "wardId": "ward-andheri-east" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [72.862, 19.102],
+          [72.888, 19.102],
+          [72.895, 19.118],
+          [72.878, 19.128],
+          [72.858, 19.115],
+          [72.862, 19.102]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Bandra West", "wardId": "ward-bandra-west" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [72.818, 19.048],
+          [72.838, 19.048],
+          [72.842, 19.068],
+          [72.822, 19.072],
+          [72.812, 19.058],
+          [72.818, 19.048]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Dadar", "wardId": "ward-dadar" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [72.835, 19.008],
+          [72.855, 19.008],
+          [72.860, 19.028],
+          [72.842, 19.032],
+          [72.830, 19.020],
+          [72.835, 19.008]
+        ]]
+      }
+    }
+  ]
+}

@@ -1,0 +1,332 @@
+/* ============================================
+   VayuSense — Design System v2.0
+   Urban Air Quality Intelligence Platform
+   Premium Command-Center Aesthetic
+   ============================================ */
+
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* --- Design Tokens --- */
+:root {
+  /* Backgrounds */
+  --bg-primary: #0A0E1A;
+  --bg-surface: #111827;
+  --bg-card: #1A2235;
+  --bg-elevated: #1E2A3D;
+  --bg-surface-hover: #162032;
+  --bg-card-hover: #1F2B40;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.12);
+  --border-glow: rgba(0, 212, 180, 0.2);
+
+  /* Text */
+  --text-primary: #F0F4FF;
+  --text-secondary: #8892A4;
+  --text-muted: #4B5668;
+
+  /* Accent */
+  --accent-teal: #00D4B4;
+  --accent-teal-dim: rgba(0, 212, 180, 0.12);
+  --accent-teal-medium: rgba(0, 212, 180, 0.25);
+
+  /* Glow effects */
+  --glow-teal: 0 0 20px rgba(0, 212, 180, 0.3), 0 0 60px rgba(0, 212, 180, 0.08);
+  --glow-teal-subtle: 0 0 10px rgba(0, 212, 180, 0.15);
+  --glow-teal-intense: 0 0 15px rgba(0, 212, 180, 0.4), 0 0 45px rgba(0, 212, 180, 0.15), 0 0 80px rgba(0, 212, 180, 0.05);
+
+  /* Gradients */
+  --gradient-surface: linear-gradient(180deg, #111827 0%, #0D1220 100%);
+  --gradient-teal-fade: linear-gradient(90deg, rgba(0, 212, 180, 0.12) 0%, transparent 100%);
+  --gradient-teal-border: linear-gradient(135deg, rgba(0, 212, 180, 0.4), rgba(0, 212, 180, 0.05), rgba(0, 212, 180, 0.3));
+  --gradient-card: linear-gradient(135deg, rgba(26, 34, 53, 0.8) 0%, rgba(17, 24, 39, 0.6) 100%);
+
+  /* AQI Scale */
+  --aqi-good: #00C851;
+  --aqi-satisfactory: #A8D500;
+  --aqi-moderate: #FFBB00;
+  --aqi-poor: #FF7700;
+  --aqi-very-poor: #FF3300;
+  --aqi-severe: #990000;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Typography scale */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-md: 1.0625rem;  /* 17px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 2rem;      /* 32px */
+
+  /* Form controls */
+  --input-height: 3rem;       /* 48px */
+  --input-padding-x: 1rem;
+  --input-font-size: 1rem;
+  --btn-height: 3.25rem;    /* 52px */
+
+  /* Spacing */
+  --sidebar-collapsed: 64px;
+  --sidebar-expanded: 240px;
+  --topbar-height: 52px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-smooth: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Elevation shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(17, 24, 39, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(16px);
+}
+
+/* --- Global Reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(75, 86, 104, 0.5);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(75, 86, 104, 0.5) transparent;
+}
+
+/* --- Utility Classes --- */
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* --- Focus Styles --- */
+:focus-visible {
+  outline: 2px solid var(--accent-teal);
+  outline-offset: 2px;
+}
+
+/* --- Selection --- */
+::selection {
+  background: var(--accent-teal-dim);
+  color: var(--text-primary);
+}
+
+/* --- Links --- */
+a {
+  color: var(--accent-teal);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+a:hover {
+  opacity: 0.85;
+}
+
+/* --- Buttons Reset --- */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* --- Inputs Reset --- */
+input,
+select,
+textarea {
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+/* ============================================
+   Keyframe Animations
+   ============================================ */
+
+@keyframes pulse-live {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.8);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes glow-breathe {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(0, 212, 180, 0.2);
+    text-shadow: 0 0 8px rgba(0, 212, 180, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(0, 212, 180, 0.35);
+    text-shadow: 0 0 16px rgba(0, 212, 180, 0.5);
+  }
+}
+
+@keyframes border-shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Stagger utility — apply to children with --stagger-index */
+.stagger-fade-in > * {
+  opacity: 0;
+  animation: fade-in-up 0.5s ease forwards;
+}
+
+.stagger-fade-in > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-fade-in > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-fade-in > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-fade-in > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-fade-in > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-fade-in > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-fade-in > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-fade-in > *:nth-child(8) { animation-delay: 0.4s; }
+
+/* --- Section Label --- */
+.section-label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+
+/* --- Shared form control styles (admin panels, settings, etc.) --- */
+.vs-input,
+.vs-select {
+  width: 100%;
+  min-height: var(--input-height);
+  padding: 0 var(--input-padding-x);
+  font-size: var(--input-font-size);
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.vs-input:focus,
+.vs-select:focus {
+  outline: none;
+  border-color: var(--accent-teal);
+  box-shadow: 0 0 0 3px var(--accent-teal-dim);
+}
+
+/* Fix browser autofill washing inputs white */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--bg-primary) inset !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
+  caret-color: var(--text-primary);
+  transition: background-color 5000s ease-in-out 0s;
+}

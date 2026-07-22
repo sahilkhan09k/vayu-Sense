@@ -1,0 +1,149 @@
+/* ============================================
+   Cities Comparison Page — Design System
+   ============================================ */
+
+.cities-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cities-header {
+  margin-bottom: 8px;
+}
+
+.cities-title {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.cities-title span {
+  color: var(--accent-teal);
+  text-shadow: var(--glow-teal-subtle);
+}
+
+.cities-subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+/* Compare Grid */
+.cities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .cities-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.city-compare-card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.city-compare-card:hover {
+  border-color: var(--accent-teal-medium);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.city-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.city-card-name {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.city-card-status {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.city-card-aqi-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.city-card-aqi-val {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.city-card-aqi-unit {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.city-pollutants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 16px;
+}
+
+.pollutant-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--text-sm);
+}
+
+.pollutant-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.pollutant-value {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Charts Area */
+.cities-charts-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 400px;
+}
+
+.panel-title {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 300px;
+}

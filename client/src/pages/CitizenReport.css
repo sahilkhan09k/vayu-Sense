@@ -1,0 +1,244 @@
+/* ─── CitizenReport — Page 14 ────────────────────────────────────────────── */
+
+.report-intro { margin-bottom: 4px; }
+.report-heading { font-size: 22px; font-weight: 800; color: var(--citizen-text); letter-spacing: -0.02em; }
+.report-sub { font-size: 13px; color: var(--citizen-text-secondary); margin-top: 4px; line-height: 1.5; }
+
+/* ─── Form Card ──────────────────────────────────────────────────────────── */
+
+.report-card {
+  background: var(--citizen-card);
+  border: 1px solid var(--citizen-border);
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--citizen-shadow);
+}
+
+.report-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.report-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--citizen-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ─── Category Grid ──────────────────────────────────────────────────────── */
+
+.report-category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.report-cat-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 6px;
+  border: 1.5px solid var(--citizen-border);
+  border-radius: 12px;
+  background: var(--citizen-bg);
+  transition: all 130ms;
+}
+.report-cat-btn:hover { border-color: #d1d5db; }
+.report-cat-btn--active { border-color: var(--citizen-teal); background: var(--citizen-teal-light); }
+
+.report-cat-emoji { font-size: 20px; }
+.report-cat-label { font-size: 9.5px; font-weight: 700; color: var(--citizen-text); text-align: center; line-height: 1.2; }
+
+/* ─── Ward Select ────────────────────────────────────────────────────────── */
+
+.report-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--citizen-border);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--citizen-text);
+  background: var(--citizen-bg);
+  font-family: inherit;
+  appearance: none;
+  outline: none;
+  transition: border-color 150ms;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+.report-select:focus { border-color: var(--citizen-teal); }
+
+/* ─── Textarea ───────────────────────────────────────────────────────────── */
+
+.report-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--citizen-border);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--citizen-text);
+  background: var(--citizen-bg);
+  font-family: inherit;
+  resize: none;
+  outline: none;
+  transition: border-color 150ms;
+  line-height: 1.6;
+}
+.report-textarea:focus { border-color: var(--citizen-teal); }
+.report-textarea::placeholder { color: var(--citizen-text-secondary); }
+
+/* ─── Severity Track ─────────────────────────────────────────────────────── */
+
+.report-severity-tag {
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.report-severity-track {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+}
+
+.report-severity-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--citizen-border);
+  background: var(--citizen-bg);
+  transition: all 150ms;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.report-severity-dot--active { border-color: transparent; transform: scale(1.1); }
+.report-severity-dot:hover:not(.report-severity-dot--active) { border-color: #d1d5db; transform: scale(1.05); }
+
+/* ─── Submit Button ──────────────────────────────────────────────────────── */
+
+.report-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 200ms;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
+}
+.report-submit-btn:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+.report-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; box-shadow: none; }
+.report-submit-btn--success { background: #10b981; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35); }
+.report-submit-btn .spin { animation: spin 1s linear infinite; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── Section ────────────────────────────────────────────────────────────── */
+
+.report-section { display: flex; flex-direction: column; gap: 10px; }
+
+.report-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--citizen-text-secondary);
+}
+
+.report-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--citizen-text-secondary);
+  padding: 16px;
+  justify-content: center;
+}
+.report-loading .spin { animation: spin 1s linear infinite; }
+
+.report-empty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border: 1px dashed var(--citizen-border);
+  border-radius: 12px;
+  font-size: 12px;
+  color: var(--citizen-text-secondary);
+  justify-content: center;
+}
+
+/* ─── Report List ────────────────────────────────────────────────────────── */
+
+.report-list {
+  background: var(--citizen-card);
+  border: 1px solid var(--citizen-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.report-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--citizen-border);
+  transition: background 120ms;
+  gap: 10px;
+}
+.report-row:last-child { border-bottom: none; }
+.report-row:hover { background: rgba(0,0,0,0.015); }
+
+.report-row-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.report-row-cat { font-size: 18px; flex-shrink: 0; }
+
+.report-row-title {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--citizen-text);
+}
+
+.report-row-meta {
+  display: block;
+  font-size: 11px;
+  color: var(--citizen-text-secondary);
+  margin-top: 1px;
+}
+
+.report-row-severity {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}

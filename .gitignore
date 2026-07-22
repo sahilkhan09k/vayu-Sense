@@ -1,0 +1,65 @@
+# Environment and Secrets
+.env
+.env.*
+*.env
+!.env.example
+!.env.template
+*.pem
+*.key
+*.cert
+
+# Dependencies
+node_modules/
+
+# Production / Build output
+dist/
+dist-ssr/
+build/
+out/
+.next/
+.vite/
+.cache/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Diagnostics / Testing / Caches
+coverage/
+.nyc_output
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+
+# OS & System Junk
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor & IDE settings
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea
+*.suo
+*.user
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Temporary / Misc
+tmp/
+temp/
+

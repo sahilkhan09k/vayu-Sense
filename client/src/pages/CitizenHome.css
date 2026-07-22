@@ -1,0 +1,312 @@
+/* ─── CitizenHome — Page 11 ──────────────────────────────────────────────── */
+
+/* ─── Shared citizen card base ───────────────────────────────────────────── */
+.citizen-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--citizen-text);
+  letter-spacing: 0.01em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.citizen-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: var(--citizen-text-secondary);
+  transition: background 150ms, color 150ms;
+}
+.citizen-icon-btn:hover {
+  background: rgba(0,0,0,0.06);
+  color: var(--citizen-text);
+}
+
+/* ─── Hero AQI Card ──────────────────────────────────────────────────────── */
+
+.citizen-hero-card {
+  background: var(--citizen-card);
+  border: 1.5px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: var(--citizen-shadow);
+  transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.citizen-hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.citizen-hero-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--citizen-text-secondary);
+}
+
+.citizen-refresh-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: var(--citizen-text-secondary);
+  transition: background 150ms, transform 150ms;
+}
+.citizen-refresh-btn:hover { background: rgba(0,0,0,0.05); color: var(--citizen-text); }
+.citizen-refresh-btn--spinning svg { animation: spin 1s linear infinite; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.citizen-hero-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 0;
+  color: var(--citizen-text-secondary);
+  font-size: 13px;
+}
+
+.citizen-pulse-ring {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid var(--citizen-teal);
+  animation: pulse-ring 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.citizen-hero-content {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* ─── AQI Ring ───────────────────────────────────────────────────────────── */
+
+.aqi-ring-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.aqi-ring-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.aqi-ring-value {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.aqi-ring-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+/* ─── Hero Meta ──────────────────────────────────────────────────────────── */
+
+.citizen-hero-meta { flex: 1; }
+
+.citizen-hero-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--citizen-text-secondary);
+  margin-bottom: 2px;
+}
+
+.citizen-hero-city {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--citizen-text);
+  letter-spacing: -0.02em;
+}
+
+.citizen-hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.citizen-stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--citizen-text-secondary);
+  background: rgba(0,0,0,0.04);
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+/* ─── Advisory Card ──────────────────────────────────────────────────────── */
+
+.citizen-advisory-card {
+  background: var(--citizen-card);
+  border: 1px solid var(--citizen-border);
+  border-left: 4px solid var(--citizen-teal);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: border-left-color 0.4s ease;
+}
+
+.citizen-advisory-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+  color: var(--citizen-teal);
+}
+
+.citizen-sensitivity-tag {
+  margin-left: auto;
+  background: rgba(0, 212, 180, 0.12);
+  color: var(--citizen-teal);
+  border: 1px solid rgba(0, 212, 180, 0.25);
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.citizen-advisory-text {
+  font-size: 13px;
+  color: var(--citizen-text);
+  line-height: 1.65;
+}
+
+/* ─── Ward Grid ──────────────────────────────────────────────────────────── */
+
+.citizen-ward-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.citizen-ward-tile {
+  background: var(--citizen-card);
+  border: 1px solid var(--citizen-border);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: transform 150ms, box-shadow 150ms;
+}
+.citizen-ward-tile:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+
+.citizen-ward-aqi {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.citizen-ward-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--citizen-text);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.citizen-ward-cat {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+/* ─── Stations List ──────────────────────────────────────────────────────── */
+
+.citizen-stations-list {
+  background: var(--citizen-card);
+  border: 1px solid var(--citizen-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.citizen-station-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--citizen-border);
+  transition: background 120ms;
+}
+.citizen-station-row:last-child { border-bottom: none; }
+.citizen-station-row:hover { background: rgba(0,0,0,0.015); }
+
+.citizen-station-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.citizen-station-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--citizen-text);
+}
+
+.citizen-station-aqi {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ─── Error Banner ───────────────────────────────────────────────────────── */
+
+.citizen-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  background: #fff8f0;
+  border: 1px solid #f5c77e;
+  border-radius: 10px;
+  font-size: 12px;
+  color: #92400e;
+}
+
+/* ─── Section ────────────────────────────────────────────────────────────── */
+
+.citizen-section {
+  display: flex;
+  flex-direction: column;
+}
