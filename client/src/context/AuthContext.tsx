@@ -38,8 +38,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        const token = localStorage.getItem('vayusense_token');
+        const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+        if (token) {
+          headers['Authorization'] = `Bearer ${token}`;
+        }
+
         const response = await fetch(`${API_BASE}/auth/me`, {
-          headers: { 'Content-Type': 'application/json' },
+          headers,
           // Include credentials for HttpOnly cookie validation
           credentials: 'include',
         });
@@ -47,6 +53,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (response.ok) {
           const data = await response.json();
           setUser(data.user);
+        } else {
+          localStorage.removeItem('vayusense_token');
         }
       } catch (err) {
         console.error('Auth verification failed:', err);
@@ -76,6 +84,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         throw new Error(data.message || 'Login failed');
       }
 
+      if (data.token) {
+        localStorage.setItem('vayusense_token', data.token);
+      }
       setUser(data.user);
       return { user: data.user as User, redirectTo: data.redirectTo as string };
     } catch (err: unknown) {
@@ -104,6 +115,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         throw new Error(data.message || 'Registration failed');
       }
 
+      if (data.token) {
+        localStorage.setItem('vayusense_token', data.token);
+      }
       setUser(data.user);
       return { user: data.user as User, redirectTo: data.redirectTo as string };
     } catch (err: unknown) {
@@ -119,9 +133,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setLoading(true);
     setError(null);
     try {
+      const token = localStorage.getItem('vayusense_token');
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
       const response = await fetch(`${API_BASE}/auth/change-password`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({ newPassword }),
         credentials: 'include',
       });
@@ -146,10 +166,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = async () => {
     setLoading(true);
     try {
+      const token = localStorage.getItem('vayusense_token');
+      const headers: Record<string, string> = {};
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
       await fetch(`${API_BASE}/auth/logout`, {
         method: 'POST',
+        headers,
         credentials: 'include',
       });
+      localStorage.removeItem('vayusense_token');
       setUser(null);
     } catch (err) {
       console.error('Logout failed:', err);

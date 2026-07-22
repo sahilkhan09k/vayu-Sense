@@ -71,11 +71,12 @@ export async function register(req: Request, res: Response): Promise<void> {
       email: user.email,
       role: user.role,
     };
-    setTokenCookie(res, payload);
+    const token = setTokenCookie(res, payload);
 
     const userJson = user.toJSON();
     res.status(201).json({
       message: 'Account created successfully.',
+      token,
       user: userJson,
       redirectTo: getRedirectPath(userJson),
     });
@@ -120,11 +121,12 @@ export async function login(req: Request, res: Response): Promise<void> {
       email: user.email,
       role: user.role,
     };
-    setTokenCookie(res, payload);
+    const token = setTokenCookie(res, payload);
 
     const userJson = user.toJSON();
     res.json({
       message: 'Login successful.',
+      token,
       user: userJson,
       redirectTo: getRedirectPath(userJson),
     });

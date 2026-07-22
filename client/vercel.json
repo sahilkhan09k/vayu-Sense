@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/api/:path*",
+      "destination": "https://vayu-sense.onrender.com/api/:path*"
+    },
+    {
       "source": "/((?!assets/|data/|favicon.svg|icons.svg).*)",
       "destination": "/index.html"
     }

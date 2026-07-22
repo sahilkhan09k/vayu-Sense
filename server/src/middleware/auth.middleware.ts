@@ -17,7 +17,10 @@ declare global {
 }
 
 export function authMiddleware(req: Request, res: Response, next: NextFunction): void {
-  const token = req.cookies?.token;
+  const tokenFromHeader = req.headers.authorization?.startsWith('Bearer ')
+    ? req.headers.authorization.split(' ')[1]
+    : undefined;
+  const token = req.cookies?.token || tokenFromHeader;
 
   if (!token) {
     res.status(401).json({ message: 'Authentication required. No token provided.' });
